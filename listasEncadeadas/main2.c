@@ -171,7 +171,7 @@ int lst_estaNaLista (Lista* l, int v) {
     }
     return 0;
 }
-/*
+
 Lista* lst_interseccao(Lista* l, Lista* l2) {
     Lista* p = l;
     Lista* l3 = lst_cria();
@@ -180,11 +180,11 @@ Lista* lst_interseccao(Lista* l, Lista* l2) {
         if (lst_estaNaLista(l2, p->info)) {
             l3 = lst_insere(l3, p->info);
         }
+        p = p->prox;
     }
-    p = p->prox;
 
     return l3;
-}*/
+}
 /*
 Lista* lst_insere_ordenado(Lista* l, int v) {
     Lista* novo = (Lista*)malloc(sizeof(Lista));
@@ -226,6 +226,43 @@ Lista* uniao_ordenada_lista(Lista* l1, Lista* l2) {
     return uniao;
 }*/
 
+/*
+int verifica_balanceamento(char *sequencia) {
+    Pilha* p = pilha_cria(); // Cria uma pilha vazia
+    char atual, topo;
+
+    for (int i = 0; sequencia[i] != '\0'; i++) {
+        atual = sequencia[i];
+
+        // Se for um símbolo de abertura, empilhamos
+        if (atual == '(' || atual == '{' || atual == '[') {
+            pilha_push(p, atual);
+        }
+        // Se for um símbolo de fechamento, verificamos o topo da pilha
+        else if (atual == ')' || atual == '}' || atual == ']') {
+            topo = pilha_pop(p);
+
+            // Verificamos se o topo da pilha corresponde ao fechamento correto
+            if ((atual == ')' && topo != '(') ||
+                (atual == '}' && topo != '{') ||
+                (atual == ']' && topo != '[')) {
+                return 0; // Falso, pois está desbalanceado
+            }
+        }
+    }
+
+    // Se a pilha estiver vazia, a sequência está balanceada
+    if (pilha_pop(p) == -1) {
+        return 1; // Verdadeiro, balanceado
+    }
+
+    // Se ainda houver elementos na pilha, está desbalanceado
+    return 0;
+}
+
+*/
+
+/*
 Lista* dif_sim_lista(Lista* l1, Lista* l2) {
     Lista* dif_sim = lst_cria(); // Lista para armazenar a diferença simétrica
     Lista* p1 = l1;
@@ -248,17 +285,17 @@ Lista* dif_sim_lista(Lista* l1, Lista* l2) {
     }
 
     return dif_sim;
-}
+}*/
 
 int main() {
     Lista* l;
     Lista* l2;
     Lista* l3;
     Lista menor, maior;
-    //Lista* interseccao = lst_interseccao(l, l2);
+    Lista* interseccao = lst_interseccao(l, l2);
     //Lista* invertida = lst_inverte(l3);
     // Lista* uniao = uniao_ordenada_lista(l, l2);
-    Lista* diff_sim = dif_sim_lista(l, l2);
+    //Lista* diff_sim = dif_sim_lista(l, l2);
 
     l = lst_cria();
     l2 = lst_cria();
@@ -301,14 +338,14 @@ int main() {
     //printf("\nLista invertida: ");
     //lst_imprime(invertida);]
 
-    //printf("\nLista intersecacao:\n");
-    //lst_imprime(interseccao);
+    printf("\nLista intersecacao:\n");
+    lst_imprime(interseccao);
 
     // printf("União ordenada: \n");
     // lst_imprime(uniao);
 
-    printf("Diferença simétrica: ");
-    lst_imprime(diff_sim);
+    // printf("Diferença simétrica: ");
+    // lst_imprime(diff_sim);
 
     lst_libera(l);
     lst_libera(l2);
